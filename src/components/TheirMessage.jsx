@@ -14,6 +14,15 @@ const TheirMessage = ({ lastMessage, message }) => {
           style={{ backgroundImage: `url(${message?.sender?.avatar})` }}
         />
       )}
+      {message?.attachments?.length > 0 && (
+        // eslint-disable-next-line jsx-a11y/img-redundant-alt
+        <img
+          src={message.attachments[0].file}
+          alt="message-image"
+          className="message-image"
+          style={{ float: "right" }}
+        />
+      )}
       Their Message
     </div>
   );
