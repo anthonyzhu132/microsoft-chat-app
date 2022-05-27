@@ -43,7 +43,26 @@ const ChatFeed = (props) => {
     });
   };
 
-  return <div>ChatFeed</div>;
+  // REMINDER: The "?" waits for chat to load before trying to render, preventing errors
+
+  if (!chat) return "Loading... Please Wait";
+
+  return (
+    <div className="chat-feed">
+      <div className="chat-title-container">
+        <div className="chat-title">{chat?.title}</div>
+        <div className="chat-subtitle">
+          {chat.people.map((person) => `${person.person.username}`)}
+        </div>
+      </div>
+
+      {renderMessages()}
+      <div style={{ height: "100px" }} />
+      <div className="message-form-container">
+        
+      </div>
+    </div>
+  );
 };
 
 export default ChatFeed;
