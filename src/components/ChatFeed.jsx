@@ -23,6 +23,23 @@ const ChatFeed = (props) => {
 
       // Checking if message is own user
       const isMyMessage = userName === message.sender.username;
+
+      return (
+        <div key={`msg_${index}`} style={{ width: "100%" }}>
+          <div className="message-block">
+            {isMyMessage ? <MyMessage /> : <TheirMessage />}
+          </div>
+          <div
+            className="read-receipts"
+            style={{
+              marginRight: isMyMessage ? "18px" : "0px",
+              marginLeft: isMyMessage ? "0px" : "68px",
+            }}
+          >
+            read-receipts
+          </div>
+        </div>
+      );
     });
   };
 
