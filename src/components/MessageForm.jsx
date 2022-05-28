@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { sendMessage, isTyping } from "react-chat-engine";
+import { SendOutlined, PictureOutlined } from "@ant-design/icons";
 
 const MessageForm = (props) => {
   const { chatId, creds } = props;
@@ -14,6 +15,8 @@ const MessageForm = (props) => {
       // Sending message with credentials, chatId associated, and the text (value from state)
       sendMessage(creds, chatId, { text });
     }
+
+    setValue("");
   };
 
   const handleChange = (event) => {
@@ -21,6 +24,10 @@ const MessageForm = (props) => {
 
     // Checks if someone is typing
     isTyping(props, chatId);
+  };
+
+  const handleUpload = (event) => {
+    sendMessage(creds, chatId, { files: event.target.value, text: "" });
   };
 
   return (
@@ -31,6 +38,20 @@ const MessageForm = (props) => {
         value={value}
         onChange={handleChange}
         onSubmit={handleSubmit}
+      />
+
+      <label htmlFor="upload-button">
+        <span className="image-button">
+          <PictureOutlined className="picture-icon" />
+        </span>
+      </label>
+
+      <input
+        type="file"
+        multiple={false}
+        id="upload-button"
+        style={{ display: "none " }}
+        onChange={handleUpload}
       />
     </form>
   );
