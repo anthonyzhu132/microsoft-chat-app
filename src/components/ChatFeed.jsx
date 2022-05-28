@@ -9,6 +9,22 @@ const ChatFeed = (props) => {
   // Finding active chat -- if chats exist, find activeChat;
   const chat = chats && chats[activeChat];
 
+  const renderReceipts = (message, isMyMessage) => {
+    return chat.people.map(
+      (person, index) =>
+        person.last_read === message.id && (
+          <div
+            key={`read_${index}`}
+            className="read-receipt"
+            style={{
+              float: isMyMessage ? "right" : "left",
+              backgroundImage: `url(${person?.person?.avatar})`,
+            }}
+          />
+        )
+    );
+  };
+
   // Rendering component messages
   const renderMessages = () => {
     // Assigning key from messages
@@ -43,7 +59,7 @@ const ChatFeed = (props) => {
               marginLeft: isMyMessage ? "0px" : "68px",
             }}
           >
-            read-receipts
+            {renderReceipts(message, isMyMessage)}
           </div>
         </div>
       );
