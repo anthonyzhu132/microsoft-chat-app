@@ -10,14 +10,16 @@ const MessageForm = (props) => {
 
     const text = value.trim();
 
-    if(text.length > 0 ) {
-      sendMessage(creds, chatId, { text })
+    if (text.length > 0) {
+      // Sending message with credentials, chatId associated, and the text (value from state)
+      sendMessage(creds, chatId, { text });
     }
   };
 
   const handleChange = (event) => {
     setValue(event.target.value);
 
+    // Checks if someone is typing
     isTyping(props, chatId);
   };
 
