@@ -9,10 +9,14 @@ const ChatFeed = (props) => {
   // Finding active chat -- if chats exist, find activeChat;
   const chat = chats && chats[activeChat];
 
+  // Function to check read receipts
   const renderReceipts = (message, isMyMessage) => {
+    // Maps through entire chat
     return chat.people.map(
       (person, index) =>
+        // For every person, check if last read is === to id
         person.last_read === message.id && (
+          // If true, render a div showing icon
           <div
             key={`read_${index}`}
             className="read-receipt"
