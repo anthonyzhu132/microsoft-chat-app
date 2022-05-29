@@ -4,6 +4,7 @@ import axios from "axios";
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -25,7 +26,9 @@ const LoginForm = () => {
       localStorage.setItem("password", password);
 
       window.location.reload();
-    } catch (error) {}
+    } catch (error) {
+      setError("Incorrect Login Information");
+    }
   };
 
   return (
@@ -55,6 +58,8 @@ const LoginForm = () => {
               <span>Start Chatting!</span>
             </button>
           </div>
+
+          <h2 className="error"> {error}</h2>
         </form>
       </div>
     </div>
